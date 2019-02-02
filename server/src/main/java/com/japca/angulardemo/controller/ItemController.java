@@ -22,6 +22,7 @@ public class ItemController {
     @Autowired
     public ItemController(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
+
     }
 
     @Transactional
