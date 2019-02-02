@@ -3,17 +3,20 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {ItemService} from './item.service';
-import { ItemListComponent } from './item-list/item-list.component';
+import {ItemService} from './service/item.service';
+import { ItemListController } from './item-list/item-list.controller';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ItemListComponent
+    ItemListController
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [ItemService],
   bootstrap: [AppComponent]
