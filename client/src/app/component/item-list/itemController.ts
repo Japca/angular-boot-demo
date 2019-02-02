@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {ItemService} from '../service/item.service';
+import {ItemService} from '../../service/itemService';
 
 @Component({
   selector: 'item-list',
   templateUrl: './item-list.html',
   styleUrls: ['./item-list.scss']
 })
-export class ItemListController implements OnInit {
+export class ItemController implements OnInit {
 
   items;
 
