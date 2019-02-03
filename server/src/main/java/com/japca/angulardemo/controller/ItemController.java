@@ -1,16 +1,17 @@
 package com.japca.angulardemo.controller;
 
-import com.japca.angulardemo.Repository.ItemRepository;
-import com.japca.angulardemo.entity.Item;
+import static java.util.stream.Collectors.toList;
 
+import com.japca.angulardemo.Repository.ItemRepository;
+import com.japca.angulardemo.dto.ItemDto;
+
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
-import javax.transaction.Transactional;
 
 /**
  * Created by Jakub krhovják on 2/2/19.
@@ -20,17 +21,33 @@ import javax.transaction.Transactional;
 public class ItemController {
 
     private ItemRepository itemRepository;
+    private Mapper mapper;
 
     @Autowired
-    public ItemController(ItemRepository itemRepository) {
+    public ItemController(ItemRepository itemRepository, Mapper mapper) {
         this.itemRepository = itemRepository;
-
+        this.mapper = mapper;
     }
 
-    @Transactional
+//    @Transactional
+//    @GetMapping("/list")
+//    public List<ItemDto> listItems() {
+//      itemRepository.findAll();
+//        ItemDto map = mapper.map(item1, ItemDto.class);
+//        return null;
+//        item1
+//        return itemRepository.findAll().stream()
+//                .map(item -> mapper.map(item, ItemDto.class))
+//                .collect(toList());
+//}
+
+//    @Transactional
     @GetMapping("/list")
-    public List<Item> listItems() {
-        return itemRepository.findAll();
+    public List<ItemDto> listItems() {
+        return itemRepository.findAll().stream()
+                .map(item -> mapper.map(item, ItemDto.class))
+                .collect(toList());
+
     }
 
 }

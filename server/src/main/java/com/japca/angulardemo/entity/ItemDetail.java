@@ -7,10 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * Created by Jakub krhovják on 10/21/17.
@@ -18,6 +19,7 @@ import lombok.Data;
 
 @Entity
 @Data
+@ToString(of = {"itemDetailId", "description"})
 public class ItemDetail {
 
 	@Id
@@ -26,8 +28,8 @@ public class ItemDetail {
 	private Long itemDetailId;
 	private String description;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "item_id", nullable = false, foreignKey = @ForeignKey(name = "item_id_fkey"))
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "item_id", foreignKey = @ForeignKey(name = "item_id_fkey"))
 	private Item item;
 
 }

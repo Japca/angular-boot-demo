@@ -1,5 +1,8 @@
 <h2>Item List</h2>
 
 <div *ngFor="let item of items">
+  {{item.itemId}}
   {{item.name}}
+  {{item.description}}
+  <button (click)="onEdit()">Edit</button>
 </div>
