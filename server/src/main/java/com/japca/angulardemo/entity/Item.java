@@ -20,7 +20,7 @@ import lombok.ToString;
 
 @Entity
 @Data
-@ToString(of = {"itemId", "name"})
+@ToString(exclude = {"itemDetail"})
 public class Item {
 
 	@Id
@@ -33,7 +33,10 @@ public class Item {
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "item", cascade = CascadeType.ALL, optional = false)
 	private ItemDetail itemDetail;
 
-
-
-
+//	@Override
+//	public String toString() {
+//		return "Item{" +
+//
+//				'}';
+//	}
 }

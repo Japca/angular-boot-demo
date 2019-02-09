@@ -19,7 +19,7 @@ import lombok.ToString;
 
 @Entity
 @Data
-@ToString(of = {"itemDetailId", "description"})
+@ToString(exclude = {"item"})
 public class ItemDetail {
 
 	@Id
@@ -32,4 +32,10 @@ public class ItemDetail {
 	@JoinColumn(name = "item_id", foreignKey = @ForeignKey(name = "item_id_fkey"))
 	private Item item;
 
+//	@Override
+//	public String toString() {
+//		return "ItemDetail{" +
+//
+//				'}';
+//	}
 }

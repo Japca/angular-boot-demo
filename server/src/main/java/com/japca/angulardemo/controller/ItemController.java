@@ -4,11 +4,14 @@ import static java.util.stream.Collectors.toList;
 
 import com.japca.angulardemo.Repository.ItemRepository;
 import com.japca.angulardemo.dto.ItemDto;
+import com.japca.angulardemo.entity.Item;
 
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -48,6 +51,13 @@ public class ItemController {
                 .map(item -> mapper.map(item, ItemDto.class))
                 .collect(toList());
 
+    }
+
+    @GetMapping("/list/{id}")
+    @Transactional
+    public ItemDto getItem(@PathVariable long id) {
+        Item one = itemRepository.getOne(id);
+        return mapper.map(one, ItemDto.class);
     }
 
 }

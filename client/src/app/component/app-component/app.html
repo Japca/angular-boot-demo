@@ -2,4 +2,18 @@
   <h1>Welcome to  {{title}} </h1>
 </div>
 
-<item-list></item-list>
+<ul class="nav nav-tabs">
+  <li>
+    <a routerLink="/" >List</a>
+  </li>
+  <li>
+    <a [routerLink]="['table']">Table</a>
+  </li>
+  <li>
+    <a [routerLink]="['guarded']">Guarded</a>
+  </li>
+</ul>
+
+<button mat-raised-button color="primary" (click)="onLogin(item)">Log in</button>
+<button mat-raised-button  color="accent" (click)="onLogout(item)">log out</button>
+<router-outlet></router-outlet>

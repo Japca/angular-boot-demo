@@ -1,0 +1,12 @@
+<h2>Item List</h2>
+
+<div *ngFor="let item of items">
+  <mat-card>
+    {{item.itemId}}
+    {{item.name}}
+    {{item.description}}
+    <button mat-raised-button (click)="onEdit(item)">Edit route</button>
+  </mat-card>
+
+</div>
+
