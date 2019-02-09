@@ -5,7 +5,7 @@
 // }
 
 export class Item {
-   itemId: bigint;
+   itemId: number;
    name: string;
    description: string;
 }

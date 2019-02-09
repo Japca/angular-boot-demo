@@ -17,6 +17,7 @@ import { GuardedComponent } from './component/app-component/guarded/GuardedCompo
 import {ErrorService} from './service/errorService';
 import {AuthService} from './service/AuthService';
 import {AuthGuard} from './service/AuthGuard';
+import {ItemResolve} from './component/app-component/item-list/item/ItemResolver';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import {AuthGuard} from './service/AuthGuard';
 
     AppRoutingModule
   ],
-  providers: [ItemService, ErrorService, AuthService, AuthGuard],
+  providers: [ItemService, ErrorService, AuthService, AuthGuard, ItemResolve],
   bootstrap: [App],
   entryComponents: []
 })

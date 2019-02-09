@@ -12,11 +12,11 @@ import {ItemService} from '../../../../service/itemService';
 export class ItemComponent implements OnInit, OnDestroy {
 
   item: Item;
-  id: bigint;
+  id: number;
   subscription: Subscription;
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private itemService: ItemService) {
+  constructor(private router: Router, private route: ActivatedRoute) {
     // @ts-ignore
     // this.item = this.router.getCurrentNavigation().extras.state;
   }
@@ -32,9 +32,12 @@ export class ItemComponent implements OnInit, OnDestroy {
     //     }
     //   );
 
-    this.itemService.getItem(this.id).subscribe((data: Item) => {
-      this.item = data;
-    });
+    this.item = this.route.snapshot.data['item'];
+    // this.itemService.getItem(this.id).subscribe((data: Item) => {
+    //
+    //   this.item = data;
+    // })
+
   }
 
   // It is not necessary

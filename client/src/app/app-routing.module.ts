@@ -9,11 +9,12 @@ import {EditItemComponent} from './component/app-component/item-list/edit-item/E
 import {PageNotFoundComponent} from './component/app-component/page-not-found/PageNotFoundComponent';
 import {GuardedComponent} from './component/app-component/guarded/GuardedComponent';
 import {AuthGuard} from './service/AuthGuard';
+import {ItemResolve} from './component/app-component/item-list/item/ItemResolver';
 
 const routes: Routes = [
   {path: '', component: ItemListComponent},
   {path: 'item', component: ItemListComponent},
-  {path: 'item/:id', component: ItemComponent},
+  {path: 'item/:id', component: ItemComponent,   resolve: { item: ItemResolve }},
   {path: 'item/:id/edit', component: EditItemComponent},
   {path: 'table', component: ItemTableComponent},
   {path: 'guarded', canActivate: [AuthGuard], component: GuardedComponent},

@@ -23,8 +23,8 @@ export class ItemService {
       );
   }
 
-  getItem(id: bigint) {
-    return this.http.get(`http://localhost:8080/list/${id}`)
+  getItem(id: number) {
+    return this.http.get<Item>(`http://localhost:8080/list/${id}`)
       .pipe(
         catchError(this.errorService.handleError)
       );
