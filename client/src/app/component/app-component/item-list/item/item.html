@@ -7,3 +7,6 @@
   {{item.name}}
   {{item.description}}
 </p>
+
+<button mat-raised-button (click)="onEdit(item)">Edit Template</button>
+<edit-item *ngIf="showEdit"></edit-item>

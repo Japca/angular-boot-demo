@@ -5,18 +5,19 @@ import {Subscription} from 'rxjs';
 import {ItemService} from '../../../../service/itemService';
 
 @Component({
-  selector: 'edit-item',
+  selector: 'item',
   templateUrl: './item.html',
   styleUrls: ['./item.scss']
 })
 export class ItemComponent implements OnInit, OnDestroy {
 
+  showEdit = false;
   item: Item;
   id: number;
   subscription: Subscription;
 
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute, private itemService: ItemService) {
     // @ts-ignore
     // this.item = this.router.getCurrentNavigation().extras.state;
   }
@@ -37,6 +38,12 @@ export class ItemComponent implements OnInit, OnDestroy {
     //
     //   this.item = data;
     // })
+    this.itemService.emitEvent.subscribe((showEdit: boolean) => this.showEdit = false);
+
+  }
+
+  onEdit() {
+    this.showEdit = true;
 
   }
 

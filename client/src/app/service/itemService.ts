@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
+import {Observable, Subject, throwError} from 'rxjs';
 import {catchError, retry} from 'rxjs/operators';
 import {ErrorService} from './errorService';
 import {Item} from '../model/Item';
@@ -12,6 +12,8 @@ import {Item} from '../model/Item';
   providedIn: 'root'
 })
 export class ItemService {
+
+  emitEvent = new Subject();
 
   constructor(private http: HttpClient, private errorService: ErrorService) {
   }
