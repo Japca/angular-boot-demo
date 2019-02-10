@@ -8,10 +8,11 @@ import {EmitService} from '../../../service/EmitService';
 })
 export class ObserverComponent implements OnInit {
 
-  clicked: number
+  clicked: number;
+  clickedAsync =  this.emitService.emitEvent;
 
   constructor(private emitService: EmitService) {
-    emitService.emitEvent.subscribe( (clicked: number) => this.clicked = clicked);
+    this.emitService.emitEvent.subscribe( (clicked: number) => this.clicked = clicked);
   }
 
   ngOnInit() {
