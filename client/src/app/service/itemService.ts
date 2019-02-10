@@ -23,7 +23,7 @@ export class ItemService {
       );
   }
 
-  getItem(id: number) {
+  getItem(id: number): Observable<Item> {
     return this.http.get<Item>(`http://localhost:8080/list/${id}`)
       .pipe(
         catchError(this.errorService.handleError)

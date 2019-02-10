@@ -18,6 +18,10 @@ import {ErrorService} from './service/errorService';
 import {AuthService} from './service/AuthService';
 import {AuthGuard} from './service/AuthGuard';
 import {ItemResolve} from './component/app-component/item-list/item/ItemResolver';
+import { ObservableComponent } from './component/app-component/observable/ObservableComponent';
+import { ObserverComponent } from './component/app-component/observer/ObserverComponent';
+import {EmitService} from './service/EmitService';
+import { ObParentComponent } from './component/app-component/ob-parent/ObParentComponent';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,10 @@ import {ItemResolve} from './component/app-component/item-list/item/ItemResolver
     ItemTableComponent,
     EditItemComponent,
     PageNotFoundComponent,
-    GuardedComponent
+    GuardedComponent,
+    ObservableComponent,
+    ObserverComponent,
+    ObParentComponent
   ],
   imports: [
     BrowserModule,
