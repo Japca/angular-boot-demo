@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {EmitService} from '../../../service/EmitService';
 
 @Component({
@@ -6,7 +6,7 @@ import {EmitService} from '../../../service/EmitService';
   templateUrl: './observable.html',
   styleUrls: ['./observable.scss']
 })
-export class ObservableComponent implements OnInit {
+export class ObservableComponent implements OnInit, OnDestroy {
 
   clicked = 0;
 
@@ -18,5 +18,11 @@ export class ObservableComponent implements OnInit {
   emitAction() {
     this.emitService.emitEvent.next(++this.clicked);
   }
+
+  ngOnDestroy(): void {
+    this.emitService.emitEvent.unsubscribe();
+  }
+
+
 
 }
