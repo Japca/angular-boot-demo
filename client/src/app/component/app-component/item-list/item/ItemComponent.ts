@@ -15,11 +15,12 @@ export class ItemComponent implements OnInit, OnDestroy {
   item: Item;
   id: number;
   subscription: Subscription;
+  emiEventSubscription: Subscription;
 
 
   constructor(private router: Router, private route: ActivatedRoute, private itemService: ItemService) {
     // @ts-ignore
-    // this.item = this.router.getCurrentNavigation().extras.state;
+    // this.itemControl = this.router.getCurrentNavigation().extras.state;
   }
 
   ngOnInit(): void {
@@ -36,9 +37,10 @@ export class ItemComponent implements OnInit, OnDestroy {
     this.item = this.route.snapshot.data['item'];
     // this.itemService.getItem(this.id).subscribe((data: Item) => {
     //
-    //   this.item = data;
+    //   this.itemControl = data;
     // })
-    this.itemService.emitEvent.subscribe((showEdit: boolean) => this.showEdit = false);
+    this.emiEventSubscription =
+      this.itemService.emitEvent.subscribe((showEdit: boolean) => this.showEdit = false);
 
   }
 
@@ -49,7 +51,7 @@ export class ItemComponent implements OnInit, OnDestroy {
 
   // It is not necessary
   ngOnDestroy(): void {
-    // this.subscription.unsubscribe();
+     this.emiEventSubscription.unsubscribe();
   }
 
 

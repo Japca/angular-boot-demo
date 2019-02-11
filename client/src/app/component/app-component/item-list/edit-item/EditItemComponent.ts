@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {ItemService} from '../../../../service/itemService';
+import {FormControl, NgForm, Validators} from '@angular/forms';
 
 @Component({
   selector: 'edit-item',
@@ -8,7 +9,11 @@ import {ItemService} from '../../../../service/itemService';
 })
 export class EditItemComponent implements OnInit {
 
-  constructor(private itemService: ItemService) { }
+  nameControl = new FormControl('', [Validators.required]);
+  descControl = new FormControl('', [Validators.minLength(5)]);
+
+  constructor(private itemService: ItemService) {
+  }
 
   ngOnInit() {
   }
@@ -17,4 +22,25 @@ export class EditItemComponent implements OnInit {
     this.itemService.emitEvent.next();
   }
 
+  onSubmit(form: NgForm) {
+    console.log('submited: ', form);
+  }
+
+  getErrorMessage() {
+    // if (this.itemControl.hasError('required')) {
+    //   return 'You must enter a value dddddd';
+    // }
+    // if (this.itemControl.hasError('minLength')) {
+    //   return 'Min length is 5';
+    // }
+    // return '';
+
+    return this.nameControl.hasError('required') ? 'You must enter a value' :
+       '';
+  }
+
+  getErrMes() {
+    return 'Min length is 5';
+    // return this.descControl.hasError('minLength') ? 'Min length is 5' : '';
+  }
 }

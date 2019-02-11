@@ -31,6 +31,7 @@ import {ObservableComponent} from './component/app-component/observable/Observab
 import {ObserverComponent} from './component/app-component/observer/ObserverComponent';
 import {EmitService} from './service/EmitService';
 import {ObParentComponent} from './component/app-component/ob-parent/ObParentComponent';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,17 +50,15 @@ import {ObParentComponent} from './component/app-component/ob-parent/ObParentCom
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
-    // MatFormField,
-     MatInputModule,
-    // MatLabel,
-
+    MatInputModule,
     BrowserAnimationsModule,
-
     AppRoutingModule
   ],
-  providers: [ItemService, ErrorService, AuthService, AuthGuard, ItemResolve],
+  providers: [ErrorService, AuthService, AuthGuard],
   bootstrap: [App],
   entryComponents: []
 })

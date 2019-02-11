@@ -26,7 +26,7 @@ export class ItemListComponent implements OnInit {
   onEdit(item: Item) {
     console.log('clicked');
 
-    this.router.navigate(['item/', item.itemId], { state:  item,   }, );
+    this.router.navigate(['itemControl/', item.itemId], { state:  item,   }, );
 
     // const dialogRef = this.dialog.open(Dialog, {
     //   width: '250px',

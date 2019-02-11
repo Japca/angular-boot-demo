@@ -5,7 +5,7 @@ import {ItemService} from '../../../../service/itemService';
 import {Observable} from 'rxjs';
 
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ItemResolve implements Resolve<Item> {
 
   constructor(private itemService: ItemService) {
