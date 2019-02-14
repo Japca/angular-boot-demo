@@ -4,6 +4,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {ItemService} from '../../../../service/itemService';
 
+
 @Component({
   selector: 'item',
   templateUrl: './item.html',
@@ -40,7 +41,10 @@ export class ItemComponent implements OnInit, OnDestroy {
     //   this.itemControl = data;
     // })
     this.emiEventSubscription =
-      this.itemService.emitEvent.subscribe((showEdit: boolean) => this.showEdit = false);
+      this.itemService.emitEvent.subscribe((item: Item) => {
+        this.showEdit = false;
+        this.item = item;
+      });
 
   }
 
@@ -51,7 +55,7 @@ export class ItemComponent implements OnInit, OnDestroy {
 
   // It is not necessary
   ngOnDestroy(): void {
-     this.emiEventSubscription.unsubscribe();
+    this.emiEventSubscription.unsubscribe();
   }
 
 

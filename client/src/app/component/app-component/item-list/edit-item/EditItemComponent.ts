@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {ItemService} from '../../../../service/itemService';
-import {FormControl, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {Item} from '../../../../model/Item';
 
 @Component({
   selector: 'edit-item',
@@ -9,13 +10,20 @@ import {FormControl, NgForm, Validators} from '@angular/forms';
 })
 export class EditItemComponent implements OnInit {
 
-  nameControl = new FormControl('', [Validators.required]);
-  descControl = new FormControl('', [Validators.minLength(5)]);
+  itemForm: FormGroup;
+
+  // nameControl = new FormControl('', [Validators.required]);
+  // descControl = new FormControl('', [Validators.minLength(5)]);
 
   constructor(private itemService: ItemService) {
   }
 
   ngOnInit() {
+
+    this.itemForm = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      desc: new FormControl('', [Validators.required, Validators.minLength(5)])
+    });
   }
 
   onClose() {
@@ -23,7 +31,12 @@ export class EditItemComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    debugger;
     console.log('submited: ', form);
+    const item = new Item();
+    item.name = form.form.value.name;
+    item.description = form.form.value.name;
+    this.itemService.emitEvent.next({item});
   }
 
   getErrorMessage() {
@@ -35,12 +48,13 @@ export class EditItemComponent implements OnInit {
     // }
     // return '';
 
-    return this.nameControl.hasError('required') ? 'You must enter a value' :
-       '';
+    // return this.itemForm.hasError('required') ? 'You must enter a value' :
+    '';
+    '';
   }
 
-  getErrMes() {
-    return 'Min length is 5';
-    // return this.descControl.hasError('minLength') ? 'Min length is 5' : '';
+  getDescErrorMessage() {
+    return this.itemForm.get('desc').hasError('required') ? 'You must enter a value' :
+       this.itemForm.get('desc').hasError('minlength') ? 'Min length is 5' : '';
   }
 }
