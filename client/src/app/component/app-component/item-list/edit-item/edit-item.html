@@ -7,7 +7,7 @@
       <input matInput
              formControlName="name"
              type="text" >
-      <mat-error *ngIf="itemForm.get('name').errors['required']">Is required</mat-error>
+      <mat-error *ngIf="itemForm.get('name').hasError('required')">Is required</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Description</mat-label>
