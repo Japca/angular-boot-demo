@@ -1,14 +1,38 @@
 
-.container {
-  display: flex;
-  flex-direction: column;
+.form-container {
+  //display: flex;
+  //flex-direction: column;
+  //justify-content: center;
+  //align-items: center;
+  //height: 700px;
+  border: solid black 1px;
+}
 
+.container {
+  //display: flex;
+  //flex-direction: column;
+  //justify-content: center;
+  //align-items: center;
+  //height: 700px;
+  border: solid black 1px;
 }
-.button-container {
-  display: flex;
-  justify-content: flex-end;
-  //width: 200px;
-  //align-self: flex-end;
-  //align-content: flex-start;
-  //align-items: flex-start;
+mat-form-field {
+  //width: 400px;
 }
+#form {
+  width: 400px;
+}
+//
+//.items {
+//  width: 300px;
+//}
+//.button-container {
+//  width: 300px;
+//  //display: flex;
+//  //justify-content: flex-end;
+//
+//  //width: 200px;
+//  //align-self: flex-end;
+//  //align-content: flex-start;
+//  //align-items: flex-start;
+//}

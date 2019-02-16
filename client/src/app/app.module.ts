@@ -26,12 +26,12 @@ import {GuardedComponent} from './component/app-component/guarded/GuardedCompone
 import {ErrorService} from './service/errorService';
 import {AuthService} from './service/AuthService';
 import {AuthGuard} from './service/AuthGuard';
-import {ItemResolve} from './component/app-component/item-list/item/ItemResolver';
 import {ObservableComponent} from './component/app-component/observable/ObservableComponent';
 import {ObserverComponent} from './component/app-component/observer/ObserverComponent';
-import {EmitService} from './service/EmitService';
 import {ObParentComponent} from './component/app-component/ob-parent/ObParentComponent';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MaterialModule} from './material.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -50,11 +50,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatCardModule,
-    MatInputModule,
+    MaterialModule,
+    FlexLayoutModule,
     BrowserAnimationsModule,
     AppRoutingModule
   ],

@@ -1,27 +1,31 @@
 <h2>Edit Item</h2>
 
-<form [formGroup]="itemForm" (ngSubmit)="onSubmit()" >
-  <div class="container">
-    <mat-form-field>
-      <mat-label>Name</mat-label>
-      <input matInput
-             formControlName="name"
-             type="text" >
-      <mat-error *ngIf="itemForm.get('name').hasError('required')">Is required</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Description</mat-label>
-      <input matInput
-             formControlName="desc"
-             type="text">
-      <!--<mat-error *ngIf="itemForm.get('desc').errors['minLength']">Min 5</mat-error>-->
-      <mat-error>{{getDescErrorMessage()}}</mat-error>
-    </mat-form-field>
-  </div>
-  <div class="button-container">
-    <button mat-raised-button color="primary" type="submit">Submit</button>
-  &nbsp;  &nbsp;
-    <button mat-raised-button type="button" (click)="onClose()">cancel</button>
-  </div>
-</form>
+<section >
+  <form   fxLayout="column" fxLayoutAlign="center center" [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+    <div fxLayout="column" fxLayoutAlign="center center" >
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput
+               formControlName="name"
+               type="text">
+        <mat-error *ngIf="itemForm.get('name').hasError('required')">Is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput
+               formControlName="desc"
+               type="text">
+        <!--<mat-error *ngIf="itemForm.get('desc').errors['minLength']">Min 5</mat-error>-->
+        <mat-error>{{getDescErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <div fx fxLayout="row" fxLayoutGap="5px" fxFlexAlign="end">
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+        <button mat-raised-button type="button" (click)="onClose()">cancel</button>
+      </div>
+    </div>
 
+
+
+
+  </form>
+</section>
