@@ -18,8 +18,8 @@ export class ItemService {
   constructor(private http: HttpClient, private errorService: ErrorService) {
   }
 
-  listItems() {
-    return this.http.get('http://localhost:8080/list')
+  listItems(): Observable<Array<Item>> {
+    return this.http.get<Array<Item>>('http://localhost:8080/list')
       .pipe(
         catchError(this.errorService.handleError)
       );

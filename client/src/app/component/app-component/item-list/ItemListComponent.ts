@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {ItemService} from '../../../service/itemService';
 import {Item} from '../../../model/Item';
 import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
 
 
 @Component({
@@ -11,16 +12,19 @@ import {Router} from '@angular/router';
 })
 export class ItemListComponent implements OnInit {
 
-  items: Array<Item>;
+  items$: Observable<Array<Item>>;
 
   constructor(private itemService: ItemService, private router: Router) {
 
   }
 
   ngOnInit() {
-    this.itemService.listItems().subscribe((data: Array<Item>) => {
-      this.items = data;
-    });
+    this.items$ = this.itemService.listItems();
+
+
+    // this.itemService.listItems().subscribe((data: Array<Item>) => {
+    //   this.items = data;
+    // });
   }
 
   onEdit(item: Item) {

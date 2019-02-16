@@ -1,6 +1,6 @@
 <h2>Item List</h2>
 
-<div *ngFor="let item of items">
+<div *ngFor="let item of (items$ | async)">
   <mat-card>
     {{item.itemId}}
     {{item.name}}
