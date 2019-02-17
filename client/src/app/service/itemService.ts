@@ -5,6 +5,8 @@ import {catchError, retry} from 'rxjs/operators';
 import {ErrorService} from './errorService';
 import {Item} from '../model/Item';
 
+
+import {first} from 'rxjs/operators';
 // import { Observable } from 'rxjs/Observable';
 // import 'rxjs/Rx';
 
@@ -13,7 +15,7 @@ import {Item} from '../model/Item';
 })
 export class ItemService {
 
-  emitEvent = new Subject();
+  closeEditEvent = new Subject();
 
   constructor(private http: HttpClient, private errorService: ErrorService) {
   }
@@ -32,8 +34,27 @@ export class ItemService {
       );
   }
 
-  updateItem(item: Item) {
+  updateItem(item: Item): Observable<Item> {
+    const itemDto = {
+      itemId: item.itemId,
+      name: item.name,
+      description: item.description
+    };
+    //   this.http.patch<Item>(`http://localhost:8080`, itemDto)
+    //     .forEach((data) => {
+    //       console.log("for each");
+    //         console.log(data);
+    //         this.closeEditEvent.next(data);
+    //       }
+    //     );
+    // }
+    //   // .pipe(
+    //   //   mapTo(data => this.closeEditEvent.next(data) )
+    //   // );
 
+    return this.http.patch<Item>(`http://localhost:8080`, itemDto);
+    // .pipe(
+    //   first()
+    // );
   }
-
 }

@@ -1,8 +1,9 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Item} from '../../../../model/Item';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {ItemService} from '../../../../service/itemService';
+import {first} from 'rxjs/operators';
 
 
 @Component({
@@ -13,7 +14,7 @@ import {ItemService} from '../../../../service/itemService';
 export class ItemComponent implements OnInit, OnDestroy {
 
   showEdit = false;
-  item: Item;
+  item$: Observable<Item>;
   id: number;
   subscription: Subscription;
   emiEventSubscription: Subscription;
@@ -35,16 +36,23 @@ export class ItemComponent implements OnInit, OnDestroy {
     //     }
     //   );
 
-    this.item = this.route.snapshot.data['item'];
-    // this.itemService.getItem(this.id).subscribe((data: Item) => {
+    // this.item = this.route.snapshot.data['item'];
+    this.item$ = this.itemService.getItem(this.id);
+
+    // this.item$ = this.itemService.emitEvent.asObservable();
+    this.emiEventSubscription = this.itemService.closeEditEvent.subscribe((item$: Observable<Item>) => {
+      this.showEdit = false;
+      this.item$ = item$ || this.item$;
+    });
+
+
+    // this.item$ = this.itemService.closeEditEvent;
     //
-    //   this.itemControl = data;
-    // })
-    this.emiEventSubscription =
-      this.itemService.emitEvent.subscribe((item: Item) => {
-        this.showEdit = false;
-        this.item = item;
-      });
+    // this.emiEventSubscription =
+    //   this.itemService.emitEvent.subscribe((item: Item) => {
+    //     this.showEdit = false;
+    //     this.item = item;
+    //   });
 
   }
 
@@ -57,6 +65,4 @@ export class ItemComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.emiEventSubscription.unsubscribe();
   }
-
-
 }

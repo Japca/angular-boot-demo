@@ -26,7 +26,10 @@ public class MapperConfiguration {
         return new BeanMappingBuilder() {
             protected void configure() {
                 mapping(ItemDto.class, Item.class)
-                        .fields("description", "itemDetail.description");
+                        .fields("description", "itemDetail.description")
+                        .fields("itemId", "itemDetail.itemDetailId")
+                        .fields("itemId", "itemId");
+
             }
         };
     }

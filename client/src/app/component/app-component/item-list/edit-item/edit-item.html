@@ -1,7 +1,7 @@
 <h2>Edit Item</h2>
 
 <section >
-  <form   fxLayout="column" fxLayoutAlign="center center" [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+  <form fxLayout="column" fxLayoutAlign="center center"   [formGroup]="itemForm" (ngSubmit)="onSubmit()">
     <div fxLayout="column" fxLayoutAlign="center center" >
       <mat-form-field>
         <mat-label>Name</mat-label>
@@ -19,8 +19,8 @@
         <mat-error>{{getDescErrorMessage()}}</mat-error>
       </mat-form-field>
       <div fx fxLayout="row" fxLayoutGap="5px" fxFlexAlign="end">
-        <button mat-raised-button color="primary" type="submit">Submit</button>
-        <button mat-raised-button type="button" (click)="onClose()">cancel</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!itemForm.valid">Submit</button>
+        <button mat-raised-button type="button"  (click)="onClose()">cancel</button>
       </div>
     </div>
 

@@ -1,7 +1,8 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import {ItemService} from '../../../../service/itemService';
 import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {Item} from '../../../../model/Item';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'edit-item',
@@ -12,6 +13,9 @@ export class EditItemComponent implements OnInit {
 
   itemForm: FormGroup;
 
+  @Input()
+  item: Item;
+
   // nameControl = new FormControl('', [Validators.required]);
   // descControl = new FormControl('', [Validators.minLength(5)]);
 
@@ -21,22 +25,29 @@ export class EditItemComponent implements OnInit {
   ngOnInit() {
 
     this.itemForm = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      desc: new FormControl('', [Validators.required, Validators.minLength(5)])
+
+      name: new FormControl(this.item.name, [Validators.required]),
+      desc: new FormControl(this.item.description, [Validators.required, Validators.minLength(5)])
     });
   }
 
   onClose() {
-    this.itemService.emitEvent.next();
+    this.itemService.closeEditEvent.next();
   }
 
-  onSubmit(form: NgForm) {
-    debugger;
-    console.log('submited: ', form);
+  onSubmit() {
     const item = new Item();
-    item.name = form.form.value.name;
-    item.description = form.form.value.name;
-    this.itemService.emitEvent.next({item});
+    item.itemId = this.item.itemId;
+    item.name = this.itemForm.get('name').value;
+    item.description = this.itemForm.get('desc').value;
+    const item$ = this.itemService.updateItem(item);
+    this.itemService.closeEditEvent.next(item$);
+
+    // this.itemService.updateItem(item).subscribe((data: Item) => {
+    //   console.log(data)
+    //   this.item = data;
+    // });
+
   }
 
   getErrorMessage() {
@@ -55,6 +66,6 @@ export class EditItemComponent implements OnInit {
 
   getDescErrorMessage() {
     return this.itemForm.get('desc').hasError('required') ? 'You must enter a value' :
-       this.itemForm.get('desc').hasError('minlength') ? 'Min length is 5' : '';
+      this.itemForm.get('desc').hasError('minlength') ? 'Min length is 5' : '';
   }
 }

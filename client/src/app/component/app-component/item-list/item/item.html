@@ -2,11 +2,14 @@
 
 <h4>{{id}}</h4>
 
-<p>
-  {{item.itemId}}
-  {{item.name}}
-  {{item.description}}
-</p>
+<div *ngIf=" (item$ | async) as item ">
+  <p >
+    {{item.itemId}}
+    {{item.name}}
+    {{item.description}}
 
-<button mat-raised-button (click)="onEdit(item)">Edit Template</button>
-<edit-item *ngIf="showEdit"></edit-item>
+  </p>
+
+  <button mat-raised-button (click)="onEdit()">Edit Template</button>
+  <edit-item [item]="item" *ngIf="showEdit"></edit-item>
+</div>

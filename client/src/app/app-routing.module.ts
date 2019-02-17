@@ -13,7 +13,7 @@ import {ObParentComponent} from './component/app-component/ob-parent/ObParentCom
 const routes: Routes = [
   {path: '', component: ItemListComponent},
   {path: 'item', component: ItemListComponent},
-  {path: 'itemControl/:id', component: ItemComponent,   resolve: { item: ItemResolve }},
+  {path: 'itemControl/:id', component: ItemComponent,  /* resolve: { item: ItemResolve }*/},
   {path: 'itemControl/:id/edit', component: EditItemComponent},
   {path: 'table', component: ItemTableComponent},
   {path: 'guarded', canActivate: [AuthGuard], component: GuardedComponent},
