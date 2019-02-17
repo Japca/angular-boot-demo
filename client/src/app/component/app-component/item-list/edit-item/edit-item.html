@@ -1,9 +1,9 @@
 <h2>Edit Item</h2>
 
-<section >
-  <form fxLayout="column" fxLayoutAlign="center center"   [formGroup]="itemForm" (ngSubmit)="onSubmit()">
-    <div fxLayout="column" fxLayoutAlign="center center" >
-      <mat-form-field>
+<section fxLayout fxLayoutAlign="center">
+  <form  fxFlex.xs="100%" fxFlex.gt-xs="400px" [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+    <div fxLayout="column">
+      <mat-form-field >
         <mat-label>Name</mat-label>
         <input matInput
                formControlName="name"
@@ -18,13 +18,11 @@
         <!--<mat-error *ngIf="itemForm.get('desc').errors['minLength']">Min 5</mat-error>-->
         <mat-error>{{getDescErrorMessage()}}</mat-error>
       </mat-form-field>
-      <div fx fxLayout="row" fxLayoutGap="5px" fxFlexAlign="end">
+      <div fxLayout="row" fxLayoutGap="5px" fxFlexAlign.gt-xs="end">
         <button mat-raised-button color="primary" type="submit" [disabled]="!itemForm.valid">Submit</button>
-        <button mat-raised-button type="button"  (click)="onClose()">cancel</button>
+        <button mat-raised-button type="button" (click)="onClose()">cancel</button>
       </div>
     </div>
-
-
 
 
   </form>
