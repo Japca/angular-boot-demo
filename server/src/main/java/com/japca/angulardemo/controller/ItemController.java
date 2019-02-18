@@ -8,6 +8,8 @@ import com.japca.angulardemo.entity.Item;
 
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,13 +48,20 @@ public class ItemController {
 //                .collect(toList());
 //}
 
-//    @Transactional
+    //    @Transactional
     @GetMapping("/list")
     public List<ItemDto> listItems() {
-        return itemRepository.findAll().stream()
+        List<ItemDto> collect = itemRepository.findAll().stream()
                 .map(item -> mapper.map(item, ItemDto.class))
                 .collect(toList());
+        return collect;
 
+    }
+
+    @GetMapping("/list/page")
+    public Page<Item> listResult(Pageable pageable) {
+        Page<Item> page = itemRepository.listPage(pageable);
+        return page;
     }
 
     @GetMapping("/list/{id}")

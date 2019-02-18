@@ -5,7 +5,7 @@
 // }
 
 export class Item {
-   itemId: number;
+   id: number;
    name: string;
    description: string;
 }

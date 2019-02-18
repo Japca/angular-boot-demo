@@ -36,7 +36,7 @@ export class ItemService {
 
   updateItem(item: Item): Observable<Item> {
     const itemDto = {
-      itemId: item.itemId,
+      id: item.id,
       name: item.name,
       description: item.description
     };
@@ -56,5 +56,14 @@ export class ItemService {
     // .pipe(
     //   first()
     // );
+  }
+
+  getPage(page, size): Observable<Array<Item>> {
+    return this.http.get<Array<Item>>('http://localhost:8080/list/page', {
+      params: {page, size}
+    })
+      .pipe(
+        catchError(this.errorService.handleError)
+      );
   }
 }

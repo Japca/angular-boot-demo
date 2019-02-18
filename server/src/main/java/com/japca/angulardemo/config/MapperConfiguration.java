@@ -27,8 +27,8 @@ public class MapperConfiguration {
             protected void configure() {
                 mapping(ItemDto.class, Item.class)
                         .fields("description", "itemDetail.description")
-                        .fields("itemId", "itemDetail.itemDetailId")
-                        .fields("itemId", "itemId");
+                        .fields("id", "itemDetail.itemDetailId")
+                        .fields("id", "id");
 
             }
         };

@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class ItemDto {
 
-    private Long itemId;
+    private Long id;
     private String name;
     private String description;
 

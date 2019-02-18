@@ -37,7 +37,7 @@ export class EditItemComponent implements OnInit {
 
   onSubmit() {
     const item = new Item();
-    item.itemId = this.item.itemId;
+    item.id = this.item.id;
     item.name = this.itemForm.get('name').value;
     item.description = this.itemForm.get('desc').value;
     const item$ = this.itemService.updateItem(item);

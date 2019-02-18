@@ -26,7 +26,7 @@ public class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pooled")
 	@SequenceGenerator(allocationSize = 1, name = "item_id_seq", sequenceName = "item_id_seq")
-	private Long itemId;
+	private Long id;
 	private String name;
 
 	@JsonIgnoreProperties("item")

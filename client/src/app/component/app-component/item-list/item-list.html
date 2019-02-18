@@ -2,7 +2,7 @@
 
 <div *ngFor="let item of (items$ | async)">
   <mat-card>
-    {{item.itemId}}
+    {{item.id}}
     {{item.name}}
     {{item.description}}
     <button mat-raised-button (click)="onEdit(item)">
