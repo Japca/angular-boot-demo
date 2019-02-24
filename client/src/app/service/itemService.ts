@@ -7,6 +7,7 @@ import {Item} from '../model/Item';
 
 
 import {first} from 'rxjs/operators';
+import {Page} from '../model/Page';
 // import { Observable } from 'rxjs/Observable';
 // import 'rxjs/Rx';
 
@@ -23,6 +24,18 @@ export class ItemService {
   listItems(): Observable<Array<Item>> {
     return this.http.get<Array<Item>>('http://localhost:8080/list')
       .pipe(
+        catchError(this.errorService.handleError)
+      );
+  }
+
+
+  getPage(pageNumber, pageSize): Observable<Page> {
+      return this.http.get<Page>('http://localhost:8080/list/page', {
+      params: {
+        page: pageNumber,
+        size: pageSize
+      }
+    }).pipe(
         catchError(this.errorService.handleError)
       );
   }
@@ -58,12 +71,5 @@ export class ItemService {
     // );
   }
 
-  getPage(page, size): Observable<Array<Item>> {
-    return this.http.get<Array<Item>>('http://localhost:8080/list/page', {
-      params: {page, size}
-    })
-      .pipe(
-        catchError(this.errorService.handleError)
-      );
-  }
+
 }

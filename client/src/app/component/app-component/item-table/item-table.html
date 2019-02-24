@@ -20,6 +20,12 @@
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
 
-<mat-paginator #paginator [pageSize]="1" [pageSizeOptions]="[1, 10, 20]" (page)="pageEvent = getPage($event)">
+
+<mat-paginator #paginator [pageSize]="pageSize" [length]="length"
+               [pageSizeOptions]="[1, 2, 10, 20]" (page)="pageEvent = getPage($event)">
+
+  <!--[pageIndex]="pageIndex"-->
+<!--<mat-paginator #paginator [pageSize]="1" [pageSizeOptions]="[1, 10, 20]" (page)="pageEvent = getPage($event)">-->
 
 </mat-paginator>
+
