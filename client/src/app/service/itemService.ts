@@ -11,6 +11,10 @@ import {Page} from '../model/Page';
 // import { Observable } from 'rxjs/Observable';
 // import 'rxjs/Rx';
 
+import * as ItemReducer from '../reducer/ItemReducer';
+import * as ItemAction from '../action/ItemAction';
+import {Store} from '@ngrx/store';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,26 +22,30 @@ export class ItemService {
 
   closeEditEvent = new Subject();
 
-  constructor(private http: HttpClient, private errorService: ErrorService) {
+  constructor(private http: HttpClient,
+              private errorService: ErrorService,
+              private store: Store<ItemReducer.State>) {
   }
 
-  listItems(): Observable<Array<Item>> {
-    return this.http.get<Array<Item>>('http://localhost:8080/list')
+  listItems() {
+    this.http.get<Array<Item>>('http://localhost:8080/list')
       .pipe(
         catchError(this.errorService.handleError)
-      );
+      ).subscribe((items: Array<Item>) => {
+      this.store.dispatch(new ItemAction.GetItemsActions(items));
+    });
   }
 
 
   getPage(pageNumber, pageSize): Observable<Page> {
-      return this.http.get<Page>('http://localhost:8080/list/page', {
+    return this.http.get<Page>('http://localhost:8080/list/page', {
       params: {
         page: pageNumber,
         size: pageSize
       }
     }).pipe(
-        catchError(this.errorService.handleError)
-      );
+      catchError(this.errorService.handleError)
+    );
   }
 
   getItem(id: number): Observable<Item> {

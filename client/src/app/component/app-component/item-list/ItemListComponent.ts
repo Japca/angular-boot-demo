@@ -3,6 +3,8 @@ import {ItemService} from '../../../service/itemService';
 import {Item} from '../../../model/Item';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as ItemReducer from '../../../reducer/ItemReducer';
 
 
 @Component({
@@ -14,12 +16,14 @@ export class ItemListComponent implements OnInit {
 
   items$: Observable<Array<Item>>;
 
-  constructor(private itemService: ItemService, private router: Router) {
+  constructor(private router: Router,
+              private store: Store<ItemReducer.State>) {
 
   }
 
   ngOnInit() {
-    this.items$ = this.itemService.listItems();
+    // this.items$ = this.itemService.listItems();
+    this.items$ = this.store.select(ItemReducer.getItems);
 
 
     // this.itemService.listItems().subscribe((data: Array<Item>) => {
