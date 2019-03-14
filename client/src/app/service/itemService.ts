@@ -34,7 +34,9 @@ export class ItemService {
       .pipe(
         catchError(this.errorService.handleError)
       )
-      .subscribe((items: Array<Item>) => this.store.dispatch(new GetItemsActions(items)));
+      .subscribe((items: Array<Item>) => {
+        this.store.dispatch(new GetItemsActions(items));
+      });
   }
 
 

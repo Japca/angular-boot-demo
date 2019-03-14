@@ -4,15 +4,20 @@ import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {Observable} from 'rxjs';
 
 export interface ItemState {
-  items: Array<any>;
+  items: Array<Item>;
 }
 
-export function ItemReducer(state = [], action: ItemAction) {
+const initialState: ItemState = {
+  items: []
+}
+
+export function ItemReducer(state = initialState, action: ItemAction) {
 
   switch (action.type) {
     case GET_ITEMS:
+      debugger;
       return {
-        items$: action.payload
+        items: action.payload
       };
     default: {
       return state;
