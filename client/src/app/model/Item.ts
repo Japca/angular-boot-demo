@@ -5,7 +5,13 @@
 // }
 
 export class Item {
-   id: number;
-   name: string;
-   description: string;
+
+  id: number;
+  name: string;
+  description: string;
+
+  constructor(obj?: any) {
+    Object.assign(this, obj);
+  }
+
 }

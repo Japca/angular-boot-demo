@@ -1,5 +1,6 @@
 import {Action} from '@ngrx/store';
 import {Item} from '../model/Item';
+import {Observable} from 'rxjs';
 
 export const GET_ITEMS = 'Get all items';
 

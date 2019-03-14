@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as ItemReducer from '../../../reducer/ItemReducer';
 import {ItemState} from '../../../reducer/ItemReducer';
+import * as ItemAction from '../../../action/ItemAction';
 
 
 @Component({
@@ -15,15 +16,16 @@ import {ItemState} from '../../../reducer/ItemReducer';
 })
 export class ItemListComponent implements OnInit {
 
-  items$: Observable<Array<Item>>;
+  items$: Observable<Array<any>>;
 
   constructor(private router: Router,
+              private itemService: ItemService,
               private store: Store<ItemState>) {
 
   }
 
   ngOnInit() {
-    // this.items$ = this.itemService.listItems();
+    this.itemService.listItems();
     this.items$ = this.store.select(ItemReducer.getItems);
 
 

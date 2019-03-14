@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Observable, Subject, throwError} from 'rxjs';
-import {catchError, retry} from 'rxjs/operators';
+import {catchError, map, retry, take, toArray} from 'rxjs/operators';
 import {ErrorService} from './errorService';
 import {Item} from '../model/Item';
 
@@ -15,6 +15,7 @@ import * as ItemReducer from '../reducer/ItemReducer';
 import * as ItemAction from '../action/ItemAction';
 import {Store} from '@ngrx/store';
 import {ItemState} from '../reducer/ItemReducer';
+import {GetItemsActions} from '../action/ItemAction';
 
 @Injectable({
   providedIn: 'root'
@@ -29,12 +30,11 @@ export class ItemService {
   }
 
   listItems() {
-    this.http.get<Array<Item>>('http://localhost:8080/list')
+    return this.http.get<Array<Item>>('http://localhost:8080/list')
       .pipe(
         catchError(this.errorService.handleError)
-      ).subscribe((items: Array<Item>) => {
-      this.store.dispatch(new ItemAction.GetItemsActions(items));
-    });
+      )
+      .subscribe((items: Array<Item>) => this.store.dispatch(new GetItemsActions(items)));
   }
 
 
