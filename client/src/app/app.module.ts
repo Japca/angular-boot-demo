@@ -32,6 +32,8 @@ import {ObParentComponent} from './component/app-component/ob-parent/ObParentCom
 import {ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from './material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {StoreModule} from '@ngrx/store';
+import { reducers } from './app.reducer';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MaterialModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(reducers)
   ],
   providers: [ErrorService, AuthService, AuthGuard],
   bootstrap: [App],

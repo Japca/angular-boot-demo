@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as ItemReducer from '../../../reducer/ItemReducer';
+import {ItemState} from '../../../reducer/ItemReducer';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class ItemListComponent implements OnInit {
   items$: Observable<Array<Item>>;
 
   constructor(private router: Router,
-              private store: Store<ItemReducer.State>) {
+              private store: Store<ItemState>) {
 
   }
 

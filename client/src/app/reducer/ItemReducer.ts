@@ -6,12 +6,6 @@ export interface ItemState {
   items: Array<Item>;
 }
 
-import * as fromRoot from '../app.reducer';
-
-export interface State extends fromRoot.State {
-  item: ItemState;
-}
-
 const initState: ItemState = {
   items: []
 };
@@ -31,3 +25,5 @@ export function ItemReducer(state = initState, action: ItemAction) {
 
 export const getItemState = createFeatureSelector<ItemState>('items');
 export const getItems = createSelector(getItemState, (state: ItemState) => state.items);
+
+

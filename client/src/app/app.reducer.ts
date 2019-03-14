@@ -1,20 +1,12 @@
-import {Item} from './model/Item';
+import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
+
+import {ItemState, ItemReducer} from './reducer/ItemReducer';
+
 
 export interface State {
-  items: Array<Item>;
+  items: ItemState;
 }
 
-const initialState: State = {
-  items: []
+export const reducers: ActionReducerMap<State> = {
+  items: ItemReducer
 };
-
-export function appReducer(state = initialState, action) {
-  switch (action.type) {
-    case 'LIST_ITEM':
-      return {
-        isLoading: true
-      };
-    default:
-      return state;
-  }
-}

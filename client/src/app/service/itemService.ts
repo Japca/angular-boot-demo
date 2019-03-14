@@ -14,6 +14,7 @@ import {Page} from '../model/Page';
 import * as ItemReducer from '../reducer/ItemReducer';
 import * as ItemAction from '../action/ItemAction';
 import {Store} from '@ngrx/store';
+import {ItemState} from '../reducer/ItemReducer';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class ItemService {
 
   constructor(private http: HttpClient,
               private errorService: ErrorService,
-              private store: Store<ItemReducer.State>) {
+              private store: Store<ItemState>) {
   }
 
   listItems() {

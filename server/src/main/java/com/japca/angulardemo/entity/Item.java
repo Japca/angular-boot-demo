@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import lombok.Data;
 import lombok.ToString;
@@ -20,11 +21,12 @@ import lombok.ToString;
 
 @Entity
 @Data
+@Table(name = "item")
 @ToString(exclude = {"itemDetail"})
 public class Item {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pooled")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_id_seq")
 	@SequenceGenerator(allocationSize = 1, name = "item_id_seq", sequenceName = "item_id_seq")
 	private Long id;
 	private String name;
